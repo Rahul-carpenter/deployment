@@ -1,7 +1,9 @@
-from dotenv import load_dotenv
-load_dotenv()
+from app import app, db
+from flask_migrate import upgrade
 
-from app import app
+# Apply migrations automatically on start
+with app.app_context():
+    upgrade()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run()
